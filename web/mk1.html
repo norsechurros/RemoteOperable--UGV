@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Control</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #video-container {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        #video-stream {
+            width: 100%;
+            height: auto;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .control-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="video-container">
+        <video id="video-stream" controls>
+            <!-- Add your video source here -->
+            <source src="your_video_source.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="button-container">
+        <button class="control-button" onclick="move('front')">Front</button>
+        <br>
+        <button class="control-button" onclick="move('left')">Left</button>
+        <button class="control-button" onclick="stop()">Stop</button>
+        <button class="control-button" onclick="move('right')">Right</button>
+        <br>
+        <button class="control-button" onclick="move('back')">Back</button>
+    </div>
+
+    <script>
+        function move(direction) {
+            switch (direction) {
+                case 'front':
+                    simulateKeyPress('I');
+                    break;
+                case 'back':
+                    simulateKeyPress(',');
+                    break;
+                case 'left':
+                    simulateKeyPress('J');
+                    break;
+                case 'right':
+                    simulateKeyPress('L');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function stop() {
+            simulateKeyPress('K');
+        }
+
+        function simulateKeyPress(key) {
+            var event = new KeyboardEvent('keydown', {
+                key: key,
+            });
+
+            document.dispatchEvent(event);
+        }
+    </script>
+
+</body>
+</html>

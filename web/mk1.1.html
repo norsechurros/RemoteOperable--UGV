@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Control</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .control-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="button-container">
+        <button class="control-button" onclick="move('front')">Front</button>
+        <br>
+        <button class="control-button" onclick="move('left')">Left</button>
+        <button class="control-button" onclick="stop()">Stop</button>
+        <button class="control-button" onclick="move('right')">Right</button>
+        <br>
+        <button class="control-button" onclick="move('back')">Back</button>
+    </div>
+
+    <script>
+        function move(direction) {
+            switch (direction) {
+                case 'front':
+                    simulateKeyPress('I');
+                    break;
+                case 'back':
+                    simulateKeyPress(',');
+                    break;
+                case 'left':
+                    simulateKeyPress('J');
+                    break;
+                case 'right':
+                    simulateKeyPress('L');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function stop() {
+            simulateKeyPress('K');
+        }
+
+        function simulateKeyPress(key) {
+            var event = new KeyboardEvent('keydown', {
+                key: key,
+            });
+
+            document.dispatchEvent(event);
+        }
+    </script>
+
+</body>
+</html>
